@@ -9,7 +9,10 @@ import SwiftUI
 
 struct Home: View {
     var body: some View {
-        Text("Homescreen!")
+        ScrollView{
+            Text("Welcome!")
+            Text("You may now begin monitoring your inventory!")
+        }
     }
 }
 

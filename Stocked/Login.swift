@@ -14,18 +14,48 @@ struct Login: View {
     @State var email = ""
     @State var password = ""
     @State var isAuthenticated:Bool = false
+    @State var needsAccount:Bool = false
     
     var body: some View {
         NavigationView{
             VStack{
+                
+                Spacer()
+                Text("Stock It").font(.headline)
+                Spacer()
+                
                 TextField("Email", text:$email)
+                    .padding()
                 SecureField("Password", text:$password)
-                NavigationLink(destination: Home(), isActive: $isAuthenticated){
-                    Text("Login")
-                        .onTapGesture {
-                            login()
+                    .padding()
+                
+                HStack{
+                    
+                    Spacer()
+                    
+                    NavigationLink(destination: Home(), isActive: $isAuthenticated){
+                        Text("Login")
+                            .onTapGesture {
+                                login()
+                        }
                     }
+                    
+                    Spacer()
+                    
+                    NavigationLink(destination: SignUp(), isActive: $needsAccount){
+                        Text("Sign Up")
+                            .onTapGesture{
+                                needsAccount = true
+                        }
+                    }
+                    
+                    Spacer()
+                    
                 }
+                .padding()
+                
+                
+                Spacer()
             }
         }
     }
@@ -44,6 +74,9 @@ func login() {
         }
     }
 }
+
+
+
 
 struct Content_Preview: PreviewProvider {
     static var previews: some View {
